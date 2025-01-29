@@ -1,0 +1,15 @@
+pkgbase = tidy-git
+	pkgdesc = dotfile symlinker
+	pkgver = 1.2.0
+	pkgrel = 1
+	url = https://github.com/shrimp332/tidy
+	arch = x86_64
+	license = BSD-3-Clause
+	makedepends = git
+	makedepends = go>=1.23
+	makedepends = make
+	options = !debug
+	source = git+https://github.com/shrimp332/tidy.git
+	md5sums = SKIP
+
+pkgname = tidy-git
