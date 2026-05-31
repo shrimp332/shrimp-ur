@@ -1,6 +1,6 @@
 pkgname=tidy-git
 _pkgname=tidy
-pkgver=1.2.1
+pkgver=2.0.0
 pkgrel=1
 pkgdesc='dotfile symlinker'
 arch=('x86_64')
@@ -10,20 +10,21 @@ makedepends=('git' 'go>=1.23' 'make')
 options=(!debug)
 source=("git+https://github.com/shrimp332/tidy.git")
 md5sums=('SKIP')
+conflicts=('tidy')
 
 pkgver() {
-	cd "$_pkgname"
-	git describe --tags | sed 's/-\([0-9]\)-/.r\1./;s/v//'
+    cd "${_pkgname}"
+    git describe --tags | sed 's/-\([0-9]*\)-/.r\1./;s/v//'
 }
 
 build() {
-	cd "$_pkgname"
-	make
+    cd "${_pkgname}"
+    make
 }
 
 package() {
-	cd "$_pkgname"
-	install -Dm755 bin/"$_pkgname" "$pkgdir"/usr/bin/tidy
-    install -Dm644 completions/bash/tidy "$pkgdir"/usr/share/bash-completion/completions/tidy
-    install -Dm644 completions/zsh/_tidy "$pkgdir"/usr/share/zsh/site-functions/_tidy
+    cd "${_pkgname}"
+    install -Dm755 bin/"$_pkgname" "$pkgdir"/usr/bin/"$_pkgname"
+    install -Dm755 completions/bash/"$_pkgname" $pkgdir"/usr/share/bash-completion/completions/$_pkgname"
+    install -Dm755 completions/zsh/_"$_pkgname" $pkgdir"/usr/share/zsh/site-functions/_$_pkgname"
 }
