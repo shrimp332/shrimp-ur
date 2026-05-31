@@ -1,0 +1,24 @@
+pkgname=tidy
+pkgver=2.0.0
+pkgrel=1
+pkgdesc='dotfile symlinker'
+arch=('x86_64')
+url="https://github.com/shrimp332/tidy"
+license=('BSD-3-Clause')
+makedepends=('go>=1.23' 'make')
+options=(!debug)
+source=("https://github.com/shrimp332/tidy/archive/refs/tags/v2.0.0.tar.gz")
+md5sums=('9767f5a708ef7d49b11386b57b647fd3')
+conflicts=('tidy-git')
+
+build() {
+	cd "${pkgname}-$pkgver"
+	make
+}
+
+package() {
+	cd "${pkgname}-$pkgver"
+	install -Dm755 bin/"$pkgname" "$pkgdir"/usr/bin/"$pkgname"
+    install -Dm755 completions/bash/"$pkgname" $pkgdir"/usr/share/bash-completion/completions/$pkgname"
+	install -Dm755 completions/zsh/_"$pkgname" $pkgdir"/usr/share/zsh/site-functions/_$pkgname"
+}
