@@ -1,6 +1,6 @@
 pkgname=tidy
 pkgver=2.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc='dotfile symlinker'
 arch=('x86_64')
 url="https://github.com/shrimp332/tidy"
@@ -8,7 +8,7 @@ license=('BSD-3-Clause')
 makedepends=('go>=1.23' 'make')
 options=(!debug)
 source=("https://github.com/shrimp332/tidy/archive/refs/tags/v2.0.0.tar.gz")
-md5sums=('9767f5a708ef7d49b11386b57b647fd3')
+md5sums=('c624c2f162ec287ba94dcf1ebd7b668b')
 conflicts=('tidy-git')
 
 build() {
