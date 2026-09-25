@@ -1,0 +1,28 @@
+pkgname=daingestd-git
+_pkgname=daingestd
+pkgver=r0
+pkgrel=1
+pkgdesc='Video Injest Daemon for Davinci Resolve'
+arch=('x86_64')
+url="https://github.com/shrimp332/daingestd"
+license=('GPL-3.0-or-later')
+makedepends=('zig')
+options=(!debug)
+source=("git+https://github.com/shrimp332/daingestd.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "${_pkgname}"
+    zig build -Doptimize=ReleaseSafe
+}
+
+package() {
+    cd "${_pkgname}"
+    install -Dm755 zig-out/bin/${_pkgname} "$pkgdir"/usr/bin/"$_pkgname"
+    install -Dm644 "contrib/${_pkgname}.service" $pkgdir"/usr/lib/systemd/user/${_pkgname}.service"
+}

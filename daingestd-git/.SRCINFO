@@ -1,0 +1,13 @@
+pkgbase = daingestd-git
+	pkgdesc = Video Injest Daemon for Davinci Resolve
+	pkgver = r0
+	pkgrel = 1
+	url = https://github.com/shrimp332/daingestd
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = zig
+	options = !debug
+	source = git+https://github.com/shrimp332/daingestd.git
+	md5sums = SKIP
+
+pkgname = daingestd-git
